@@ -30,10 +30,9 @@
   flex-direction: column;
 
   input {
+    margin: 0.5rem 0 0.5rem 0;
     height: 3rem;
     border-radius: 0.2rem;
-    margin: 0.5rem 0 0.5rem 0;
-
     padding: 1rem 1rem;
     border: none;
     background: var(--gray-100);
@@ -44,20 +43,20 @@
   }
 }
 .title {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   display: inline;
   font-size: 2rem;
   font-weight: bold;
 }
 
 .button {
+  margin-top: 0.5rem;
   height: 3rem;
   font-size: 1rem;
   font-weight: bold;
   color: var(--white);
   background-color: var(--blue-500);
   border-radius: 0.2rem;
-  margin-top: 1rem;
   &:hover {
     background-color: var(--blue-300);
   }

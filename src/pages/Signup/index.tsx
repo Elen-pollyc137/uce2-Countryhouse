@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import styles from './Login.module.scss';
-export default function Home() {
+import styles from './styles.module.scss';
+export default function SignUp() {
   return (
     <>
       <Head>
@@ -8,20 +8,22 @@ export default function Home() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <section className={styles.container}>
-        <img src="/assets/swinging.svg" alt="logo" className={styles.image} />
+        <img src="/assets/meditating.svg" alt="logo" className={styles.image} />
         <div className={styles.containerForm}>
           <form className={styles.form}>
             <label className={styles.title} htmlFor="">
-              Login
+              Cadastrar
             </label>
+            <input type="text" placeholder="Telefone" />
             <input type="email" placeholder="e-mail" />
             <input type="password" placeholder="senha" />
+            <input type="password" placeholder="Confirmar senha" />
             <button className={styles.button} type="submit">
-              Entrar
+              Cadastrar
             </button>
 
             <span className={styles.sign}>
-              Ainda não tem conta? <strong>Cadastre-se já!</strong>
+              Já tem conta? <strong>Fazer login!</strong>
             </span>
           </form>
         </div>
