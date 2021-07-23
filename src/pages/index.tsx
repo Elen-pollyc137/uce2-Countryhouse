@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import styles from './Login.module.scss';
+import database from '../../lib/database';
+
 export default function Home() {
   return (
     <>
@@ -28,4 +30,12 @@ export default function Home() {
       </section>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  await database().then(() => {
+    console.log('0k');
+  });
+
+  return { props: { pets: true } };
 }

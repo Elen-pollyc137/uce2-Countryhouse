@@ -9,10 +9,7 @@ type Auth = {
   authorization: string;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function test(req: NextApiRequest, res: NextApiResponse) {
   const id = await JWT(req);
 
   if (id && req.method === 'GET') {
