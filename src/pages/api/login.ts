@@ -3,9 +3,21 @@ import { sign } from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { secret } from '../../../api/secret';
 import database from '../../../lib/database';
+import initMiddleware from '../../../lib/init-middleware';
 import { User } from '../../../model/user';
+import Cors from 'cors';
+
+const cors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    // Only allow requests with GET, POST and OPTIONS
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
+  })
+);
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
+  await cors(req, res);
+
   if (req.method === 'POST') {
     try {
       await database();
@@ -17,23 +29,30 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       });
 
       if (!user) {
-        res.status(401);
+        return res.status(401).json({ message: 'usuário não existente' });
       }
 
       const isValidPassword = await compare(password, user.password);
 
       if (!isValidPassword) {
-        res.status(401);
+        return res.status(401).json({ message: 'senha incorreta' });
       }
 
       const token = sign({ id: user.id }, secret, {
         expiresIn: '1m',
       });
-      res.send({ name: user.name, token });
+      res.send({
+        user: {
+          name: user.name,
+          phone: user.phone,
+          email: user.email,
+        },
+        token,
+      });
     } catch (error) {
-      res.status(500).send('error');
+      return res.status(500).json({ message: 'Error servidor' });
     }
   } else {
-    res.status(405).json({ message: 'We only support POST' });
+    return res.status(405).json({ message: 'We only support POST' });
   }
 }

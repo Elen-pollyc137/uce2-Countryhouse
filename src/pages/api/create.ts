@@ -12,18 +12,18 @@ export default async function create(
       await database();
       const { email, password, phone, name } = req.body;
       const hashPassword = await hash(password, 10);
-      const newUser = await User.create({
+      await User.create({
         email,
         password: hashPassword,
         phone,
         name,
       });
 
-      res.send({ response: 'susses' });
+      return res.send({ response: 'Criado com Sucesso' });
     } catch (err) {
-      res.status(500).send('error');
+      return res.status(500).send('error');
     }
   } else {
-    res.status(405).json({ messagge: 'Method not allowedm' });
+    return res.status(405).json({ messagge: 'Method not allowedm' });
   }
 }

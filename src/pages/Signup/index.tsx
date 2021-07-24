@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from './styles.module.scss';
 export default function SignUp() {
   return (
@@ -23,7 +24,10 @@ export default function SignUp() {
             </button>
 
             <span className={styles.sign}>
-              Já tem conta? <strong>Fazer login!</strong>
+              Já tem conta?
+              <strong>
+                <Link href="/"> Fazer login!</Link>
+              </strong>
             </span>
           </form>
         </div>

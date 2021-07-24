@@ -18,8 +18,8 @@ export default async function handler(
   if (id && req.method === 'GET') {
     const [user] = await User.find({ _id: { $in: id } });
 
-    res.send(user);
+    return res.send(user);
   } else {
-    res.status(401);
+    return res.status(401);
   }
 }
