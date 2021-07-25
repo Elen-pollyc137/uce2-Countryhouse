@@ -9,7 +9,7 @@ export default function SignUp() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <section className={styles.container}>
-        <img src="/assets/meditating.svg" alt="logo" className={styles.image} />
+        <img src="/Assets/swinging.svg" alt="logo" className={styles.image} />
         <div className={styles.containerForm}>
           <form className={styles.form}>
             <label className={styles.title} htmlFor="">

@@ -24,7 +24,7 @@ export default function Home() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <section className={styles.container}>
-        <img src="/assets/swinging.svg" alt="logo" className={styles.image} />
+        <img src="/Assets/meditating.svg" alt="logo" className={styles.image} />
         <div className={styles.containerForm}>
           <form onSubmit={handleSubmit(handleSignIn)} className={styles.form}>
             <label className={styles.title} htmlFor="">
@@ -55,7 +55,7 @@ export default function Home() {
             <span className={styles.sign}>
               Ainda não tem conta?{' '}
               <strong>
-                <Link href="/Signup">Cadastre-se já!</Link>
+                <Link href="/signup">Cadastre-se já!</Link>
               </strong>
             </span>
           </form>
