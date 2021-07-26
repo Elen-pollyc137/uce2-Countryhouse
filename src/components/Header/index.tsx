@@ -5,9 +5,12 @@ export function Header() {
   return (
     <header className={styles.headerContainer}>
       <nav className={styles.headerContent}>
-        <h1>Country house</h1>
+        <Link href="/location">
+          <a className={styles.logo}>Country house</a>
+        </Link>
+
         <Link href="/">
-          <a>Login</a>
+          <a className={styles.login}>Login</a>
         </Link>
       </nav>
     </header>

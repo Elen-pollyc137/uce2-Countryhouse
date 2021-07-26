@@ -5,16 +5,15 @@ import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useUser } from '../hooks/useUser';
 
-type ISignIn = {
+type ILogin = {
   email: string;
   password: string;
 };
 export default function Home() {
-  const { userLogin, login, user, loading, error } = useUser();
+  const { userLogin, loading, error } = useUser();
 
-  console.log({ login, user, loading, error });
   const { register, handleSubmit } = useForm();
-  function handleSignIn(data: ISignIn) {
+  function handleLogin(data: ILogin) {
     userLogin(data);
   }
   return (
@@ -26,7 +25,7 @@ export default function Home() {
       <section className={styles.container}>
         <img src="/Assets/meditating.svg" alt="logo" className={styles.image} />
         <div className={styles.containerForm}>
-          <form onSubmit={handleSubmit(handleSignIn)} className={styles.form}>
+          <form onSubmit={handleSubmit(handleLogin)} className={styles.form}>
             <label className={styles.title} htmlFor="">
               Login
             </label>
