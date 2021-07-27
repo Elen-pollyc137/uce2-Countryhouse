@@ -4,7 +4,8 @@ type Content = {
     lat: Number;
     lng: Number;
     text: string;
+    img:string;
 }
-export default function Local({ text }: Content) {
-    return (<div className={styles.container}>{text}</div>);
+export default function Local({img, text }: Content) {
+    return (<div className={styles.container}><img src={img} alt="" /><label htmlFor="">{text}</label></div>);
 }
