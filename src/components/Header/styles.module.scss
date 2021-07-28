@@ -11,12 +11,14 @@
   padding: 0 2rem;
   display: flex;
   align-items: center;
-  h1 {
-    color: var(--white);
-  }
+}
 
-  a {
-    margin-left: auto;
-    color: var(--white);
-  }
+.logo {
+  color: var(--white);
+  font-size: 2rem;
+}
+
+.login {
+  color: var(--white);
+  margin-left: auto;
 }
