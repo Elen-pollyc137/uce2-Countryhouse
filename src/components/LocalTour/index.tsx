@@ -7,7 +7,7 @@ type Content = {
   text: string;
   img: string;
 };
-export default function Local({ img, text }: Content) {
+export default function LocalTour({ img, text }: Content) {
   return (
     <ToolTip text={text}>
       <div className={styles.container}>
