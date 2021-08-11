@@ -5,6 +5,7 @@ type IUser = {
 } | null;
 type IError = string | boolean;
 
+type IMessage = string | boolean;
 type IAuthProvider = {
   user: IUser | boolean;
   setUser: (user: IUser) => void;
@@ -16,6 +17,9 @@ type IAuthProvider = {
 
   error: IError;
   setError: (status: IError) => void;
+
+  message: IMessage;
+  setMessage: (status: IMessage) => void;
 };
 
 export const AuthContext = createContext({} as IAuthProvider);
@@ -27,9 +31,11 @@ export function AuthProvider({ children }: any) {
   const [login, setLogin] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<IError>(false);
-  if (error) {
+  const [message, setMessage] = useState<IMessage>(false);
+  if (error || message) {
     setTimeout(() => {
       setError(false);
+      setMessage(false);
     }, 4000);
   }
 
@@ -47,6 +53,9 @@ export function AuthProvider({ children }: any) {
 
         error,
         setError,
+
+        message,
+        setMessage,
       }}
     >
       {children}

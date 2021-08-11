@@ -2,11 +2,11 @@ import axios from 'axios';
 import { getToken } from '../helpers/Cookies';
 
 export const getApiUrl = (path: string) => {
-  return `http://localhost:3000${path}`;
+  return `http://192.168.2.121:3000${path}`;
 };
 
-export const getheaders = () => {
-  const token = getToken();
+export const getHeaders = () => {
+  const token = getToken() as string;
   if (!token) return {};
 
   return {
@@ -16,7 +16,7 @@ export const getheaders = () => {
 export const apiGet = (path: string) => {
   const url = getApiUrl(path);
   const options = {
-    headers: getheaders(),
+    headers: getHeaders(),
   };
   return axios.get(url, options);
 };
@@ -24,7 +24,7 @@ export const apiGet = (path: string) => {
 export const apiPost = (path: string, data: any) => {
   const url = getApiUrl(path);
 
-  const options = { headers: getheaders() };
+  const options = { headers: getHeaders() };
 
   return axios.post(url, data, options);
 };

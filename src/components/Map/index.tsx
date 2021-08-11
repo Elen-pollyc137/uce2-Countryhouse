@@ -1,6 +1,9 @@
 import GoogleMapReact from 'google-map-react';
 import Local from '../Local';
+<<<<<<< HEAD
 import LocalTour from '../LocalTour';
+=======
+>>>>>>> dev-heberth
 
 export default function Map() {
   const defaultProps = {
@@ -10,6 +13,7 @@ export default function Map() {
     },
     zoom: 11,
   };
+<<<<<<< HEAD
   const defaultLocal = [
     {
       id: 1,
@@ -31,12 +35,18 @@ export default function Map() {
 
   return (
     <div style={{ height: '88vh', width: '100%' }}>
+=======
+
+  return (
+    <div style={{ height: '100vh', width: '100%' }}>
+>>>>>>> dev-heberth
       <GoogleMapReact
         bootstrapURLKeys={{ key: `AIzaSyCWBxlNpEtAk1yi9lgZ5WeW89b5pdva0Ek` }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
       >
+<<<<<<< HEAD
         {defaultLocal.map((local) => (
           <Local
             key={local.id}
@@ -55,6 +65,9 @@ export default function Map() {
             img={local.img}
           />
         ))}
+=======
+        <Local lat={-15.7420889} lng={-43.0286046} text="Poly" />
+>>>>>>> dev-heberth
       </GoogleMapReact>
     </div>
   );

@@ -4,21 +4,21 @@ import database from '../../lib/database';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useUser } from '../hooks/useUser';
+import { NextPage } from 'next';
 
-type ISignIn = {
+type ILogin = {
   email: string;
   password: string;
 };
-export default function Home() {
-  const { userLogin, login, user, loading, error } = useUser();
+const Home: NextPage = () => {
+  const { userLogin, loading, error } = useUser();
 
-  console.log({ login, user, loading, error });
   const { register, handleSubmit } = useForm();
-  function handleSignIn(data: ISignIn) {
+  function handleLogin(data: ILogin) {
     userLogin(data);
   }
   return (
-    <>
+    <div>
       <Head>
         <title>Country House | Login</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -26,7 +26,7 @@ export default function Home() {
       <section className={styles.container}>
         <img src="/Assets/meditating.svg" alt="logo" className={styles.image} />
         <div className={styles.containerForm}>
-          <form onSubmit={handleSubmit(handleSignIn)} className={styles.form}>
+          <form onSubmit={handleSubmit(handleLogin)} className={styles.form}>
             <label className={styles.title} htmlFor="">
               Login
             </label>
@@ -61,10 +61,11 @@ export default function Home() {
           </form>
         </div>
       </section>
-    </>
+    </div>
   );
-}
+};
 
+export default Home;
 export async function getServerSideProps() {
   await database().then(() => {
     console.log('conectado ao banco');

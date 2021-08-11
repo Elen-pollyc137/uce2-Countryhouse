@@ -6,7 +6,9 @@ const Header: NextPage = () => {
   return (
     <header className={styles.headerContainer}>
       <nav className={styles.headerContent}>
-        <Link href="/location">
+
+        <Link href="/register" scroll={false}>
+
           <a className={styles.logo}>Country house</a>
         </Link>
 
@@ -18,4 +20,6 @@ const Header: NextPage = () => {
   );
 };
 
+
 export default Header;
+

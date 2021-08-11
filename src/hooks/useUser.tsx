@@ -9,10 +9,18 @@ import {
   removeCookUser,
 } from '../helpers/Cookies';
 
-type ISignIn = {
+type ICreate = {
+  email: string;
+  password: string;
+  name: string;
+  phone: string;
+  passwordConfirm: string;
+};
+type ILogin = {
   email: string;
   password: string;
 };
+
 export function useUser() {
   const {
     user,
@@ -26,9 +34,12 @@ export function useUser() {
 
     error,
     setError,
+
+    message,
+    setMessage,
   } = useContext(AuthContext);
 
-  async function userLogin({ email, password }: ISignIn) {
+  async function userLogin({ email, password }: ILogin) {
     try {
       setLoading(true);
       setError(false);
@@ -57,28 +68,42 @@ export function useUser() {
       setLoading(false);
     }
   }
+  async function userCreate({
+    email,
+    password,
+    phone,
+    name,
+    passwordConfirm,
+  }: ICreate) {
+    try {
+      setLoading(true);
+      setError(false);
+      setMessage(false);
 
-  // async function userResetPassword(data) {
-  //   const response = await apiFormData(data);
+      const { data } = await apiPost('/api/create', {
+        email,
+        password,
+        passwordConfirm,
+        name,
+        phone,
+      });
+      const { message } = await data;
+      setMessage(message);
+      setTimeout(() => {
+        Router.push('/');
+      }, 4000);
+    } catch (error) {
+      const { data, status } = await error.response;
+      const { message } = await data;
+      if (status === 500) {
+        setError('Error servidor');
+      }
 
-  //   console.log(response);
-  // }
-
-  // function userLogout() {
-  //   setError(false);
-  //   setUser(null);
-  //   setLoading(false);
-  //   setOrderKey({ key: false, status: false });
-  //   setOrderTransfer(false);
-  //   setOrder(false);
-  //   setListOrder([]);
-  //   setUser(null);
-  //   setLogin(false);
-  //   removeCookieUser();
-  //   removeToken();
-
-  //   history.push("/");
-  // }
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return {
     user,
@@ -87,6 +112,8 @@ export function useUser() {
     // userLogout,
     loading,
     error,
+    userCreate,
+    message,
     // userResetPassword,
     // setError,
   };
