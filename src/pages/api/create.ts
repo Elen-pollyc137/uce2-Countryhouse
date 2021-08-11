@@ -37,7 +37,6 @@ export default async function create(
         phone,
         name,
       });
-      console.log({ password, passwordConfirm });
       return res.status(201).json({ message: 'criado com Sucesso' });
     } catch (err) {
       console.log(err);

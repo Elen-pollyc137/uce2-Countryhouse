@@ -105,28 +105,6 @@ export function useUser() {
     }
   }
 
-  // async function userResetPassword(data) {
-  //   const response = await apiFormData(data);
-
-  //   console.log(response);
-  // }
-
-  // function userLogout() {
-  //   setError(false);
-  //   setUser(null);
-  //   setLoading(false);
-  //   setOrderKey({ key: false, status: false });
-  //   setOrderTransfer(false);
-  //   setOrder(false);
-  //   setListOrder([]);
-  //   setUser(null);
-  //   setLogin(false);
-  //   removeCookieUser();
-  //   removeToken();
-
-  //   history.push("/");
-  // }
-
   return {
     user,
     userLogin,

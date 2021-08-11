@@ -4,12 +4,13 @@ import database from '../../lib/database';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useUser } from '../hooks/useUser';
+import { NextPage } from 'next';
 
 type ILogin = {
   email: string;
   password: string;
 };
-export default function Home() {
+const Home: NextPage = () => {
   const { userLogin, loading, error } = useUser();
 
   const { register, handleSubmit } = useForm();
@@ -17,7 +18,7 @@ export default function Home() {
     userLogin(data);
   }
   return (
-    <>
+    <div>
       <Head>
         <title>Country House | Login</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -60,10 +61,11 @@ export default function Home() {
           </form>
         </div>
       </section>
-    </>
+    </div>
   );
-}
+};
 
+export default Home;
 export async function getServerSideProps() {
   await database().then(() => {
     console.log('conectado ao banco');

@@ -1,11 +1,12 @@
 import styles from './styles.module.scss';
 import Link from 'next/link';
+import { NextPage } from 'next';
 
-export function Header() {
+const Header: NextPage = () => {
   return (
     <header className={styles.headerContainer}>
       <nav className={styles.headerContent}>
-        <Link href="/location">
+        <Link href="/register" scroll={false}>
           <a className={styles.logo}>Country house</a>
         </Link>
 
@@ -15,4 +16,6 @@ export function Header() {
       </nav>
     </header>
   );
-}
+};
+
+export default Header;

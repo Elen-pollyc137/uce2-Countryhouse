@@ -10,10 +10,13 @@ export const JWT = async (req: NextApiRequest) => {
   }
 
   const token = authorization.replace('Bearer', ' ').trim();
+  try {
+    const data = await verify(token, secret);
+    if (!data) throw Error('token not user authentication');
+    const { id }: any = data;
 
-  const data = await verify(token, secret);
-
-  const { id }: any = data;
-
-  return id;
+    return id;
+  } catch (error) {
+    return false;
+  }
 };

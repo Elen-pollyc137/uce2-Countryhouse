@@ -1,10 +1,10 @@
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 type Content = {
-    lat: Number;
-    lng: Number;
-    text: string;
-}
+  lat: Number;
+  lng: Number;
+  text: string;
+};
 export default function Local({ text }: Content) {
-    return (<div className={styles.container}>{text}</div>);
+  return <div className={styles.container}>{text}</div>;
 }
