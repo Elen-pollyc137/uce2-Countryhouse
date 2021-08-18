@@ -27,8 +27,10 @@ const handler = nc()
     await database();
 
     if (id) {
-      const { name, description, lat, lng, price } = req.body;
+      const { name, description, lat, lng, price, available } = req.body;
 
+      const parseAvailable = !!Number(available);
+      console.log(parseAvailable);
       const user = await User.findOne({ _id: id });
 
       const local = await Local.create({
@@ -41,6 +43,7 @@ const handler = nc()
         phone: user?.phone,
         img: req.file.location,
         userId: id,
+        available: parseAvailable,
       });
       return res.send(local);
     } else {
@@ -54,8 +57,14 @@ const handler = nc()
     if (id) {
       const { body, query } = req;
       const { file } = query;
-
-      const fields = ['name', 'description', 'lat', 'lng', 'price'];
+      const fields = [
+        'name',
+        'description',
+        'lat',
+        'lng',
+        'price',
+        'available',
+      ];
       const local: any = await Local.findOne({ _id: file } as IFileQuery);
 
       fields.map((fild) => {

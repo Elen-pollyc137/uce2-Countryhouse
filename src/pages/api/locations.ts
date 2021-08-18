@@ -17,7 +17,7 @@ export default async function handler(
 
   switch (method) {
     case 'GET': {
-      const local = await Local.find();
+      const local = await Local.find({ available: true });
 
       return res.status(200).json(local);
     }

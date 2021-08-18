@@ -9,6 +9,7 @@ export interface ILocal extends Document {
   userId: string;
   img: string;
   price: string;
+  available: boolean;
 }
 
 const LocalSchema: Schema = new Schema({
@@ -23,6 +24,7 @@ const LocalSchema: Schema = new Schema({
   phone: { type: String, required: true },
   img: { type: String, required: true },
   price: { type: String, required: true },
+  available: { type: Boolean, required: true },
   userId: {
     type: String,
     ref: 'User',

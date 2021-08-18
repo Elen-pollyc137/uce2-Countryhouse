@@ -1,4 +1,3 @@
-
 import ToolTip from '../ToolTip';
 import styles from './styles.module.scss';
 
@@ -6,7 +5,7 @@ type Content = {
   lat: Number;
   lng: Number;
   text: string;
-  img: string;
+  img?: string;
 };
 export default function Local({ img, text }: Content) {
   return (
