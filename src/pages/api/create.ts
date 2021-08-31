@@ -12,7 +12,7 @@ export default async function create(
   if (req.method === 'POST') {
     try {
       await database();
-      const { email, password, phone, name, passwordConfirm } = req.body;
+      const { email, password, name, passwordConfirm, phone } = req.body;
       const isEmail = validateEmail(email);
       if (!isEmail) {
         return res.status(401).json({ message: 'email inválido' });
@@ -31,11 +31,10 @@ export default async function create(
       }
       const hashPassword = await hash(password, 10);
       await User.create({
-        _id: v4(),
         email,
         password: hashPassword,
-        phone,
         name,
+        phone,
       });
       return res.status(201).json({ message: 'criado com Sucesso' });
     } catch (err) {

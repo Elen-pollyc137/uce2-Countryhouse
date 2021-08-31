@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { useForm } from 'react-hook-form';
 import { useUser } from '../../hooks/useUser';
 import { useEffect, useState } from 'react';
+import TypeWriter from '../../components/TypeWriter';
 
 type ICreateUser = {
   email: string;
@@ -12,6 +13,12 @@ type ICreateUser = {
   phone: string;
   name: string;
 };
+
+const typeWriter = [
+  'sua melhor versão.',
+  'belos caminhos.',
+  'lugares fantásticos.',
+];
 
 type IMatch = string | boolean;
 export default function SignUp() {
@@ -41,18 +48,33 @@ export default function SignUp() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <section className={styles.container}>
-        <img src="/Assets/swinging.svg" alt="logo" className={styles.image} />
+        <div className={styles.containerLeft}>
+          <div className={styles.contentText}>
+            Country<span className={styles.span}>&</span>House O lugar para
+            encotrar <TypeWriter data={typeWriter} />
+          </div>
+          <img src="/Assets/frame.svg" alt="frame" className={styles.image} />
+        </div>
         <div className={styles.containerForm}>
           <form
             onSubmit={handleSubmit(handleCreateUser)}
             className={styles.form}
           >
             <label className={styles.title} htmlFor="">
-              Cadastrar
+              <h1>Cadastrar</h1>
+              <p>
+                Preencha os dados para poder criar uma conta no ContryHouse, o
+                numero de telehone deve ser um numero de watsApp valido.
+              </p>
             </label>
-            <input {...register('name')} type="text" placeholder="Nome" />
+
+            <input {...register('name')} type="text" placeholder="nome" />
             <input {...register('email')} type="email" placeholder="e-mail" />
-            <input {...register('phone')} type="text" placeholder="Telefone" />
+            <input
+              {...register('phone')}
+              type="text"
+              placeholder="(___) __-___-___"
+            />
             <input
               {...register('password')}
               type="password"
@@ -61,7 +83,7 @@ export default function SignUp() {
             <input
               {...register('passwordConfirm')}
               type="password"
-              placeholder="Confirmar senha"
+              placeholder="confirmar senha"
             />
             {!loading ? (
               <button className={styles.button} type="submit">

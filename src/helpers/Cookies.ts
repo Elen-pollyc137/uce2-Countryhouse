@@ -15,7 +15,9 @@ export const COOKIE_TOKEN = 'tk_netx';
 export const setCookUser = (account: any) => {
   setCookie(COOKIE_USER, account, optionsExpires);
 };
-export const getCookUser = () => getCookie(COOKIE_USER, options);
+export const getCookUser = () => {
+  return getCookie(COOKIE_USER, options);
+};
 export const removeCookUser = () => removeCookie(COOKIE_USER, optionsExpires);
 
 export const setToken = (token: string) =>

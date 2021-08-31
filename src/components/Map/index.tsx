@@ -1,5 +1,7 @@
 import GoogleMapReact from 'google-map-react';
 import Local from '../Local';
+import styles from './styles.module.scss';
+
 import LocalTour from '../LocalTour';
 const key = process.env.NEXT_PUBLIC_KEY_MAP as string;
 export default function Map() {
@@ -15,6 +17,7 @@ export default function Map() {
     {
       id: 1,
       name: 'casa',
+      available: true,
       lat: -15.657349,
       lng: -42.924404,
       img: 'https://static.wixstatic.com/media/eda3ff_cd938eb94ff646cbb56a0d9b0151251f.jpg/v1/fill/w_900,h_1200,al_c,q_85,usm_0.66_1.00_0.01/eda3ff_cd938eb94ff646cbb56a0d9b0151251f.webp',
@@ -29,9 +32,8 @@ export default function Map() {
       img: 'https://static.wixstatic.com/media/eda3ff_cd938eb94ff646cbb56a0d9b0151251f.jpg/v1/fill/w_900,h_1200,al_c,q_85,usm_0.66_1.00_0.01/eda3ff_cd938eb94ff646cbb56a0d9b0151251f.webp',
     },
   ];
-
   return (
-    <div style={{ height: '88vh', width: '100%' }}>
+    <div className={styles.container}>
       <GoogleMapReact
         bootstrapURLKeys={{ key }}
         defaultCenter={defaultProps.center}
@@ -45,10 +47,12 @@ export default function Map() {
             lng={local.lng}
             text={local.name}
             img={local.img}
+            available={local.available}
           />
         ))}
         {defaultLocalTour.map((local) => (
           <LocalTour
+            onClick={() => {}}
             key={local.id}
             lat={local.lat}
             lng={local.lng}

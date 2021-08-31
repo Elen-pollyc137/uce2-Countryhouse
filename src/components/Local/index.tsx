@@ -1,18 +1,36 @@
-import ToolTip from '../ToolTip';
-import styles from './styles.module.scss';
-
+import { useUser } from '../../hooks/useUser';
+import { LoadingBall } from '../LoadingBall';
+import { Container } from './styles';
+import { memo } from 'react';
 type Content = {
   lat: Number;
   lng: Number;
   text: string;
   img?: string;
+  available: boolean;
+  onClick?: any;
 };
-export default function Local({ img, text }: Content) {
+
+function Local({ img, text, available, onClick }: Content) {
+  const { loading } = useUser();
   return (
-    <ToolTip text={text}>
-      <div className={styles.container}>
-        <img src={img} alt="" />
-      </div>
-    </ToolTip>
+    <Container onClick={onClick} available={available}>
+      {loading ? (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '-10rem',
+          }}
+        >
+          <LoadingBall />
+        </div>
+      ) : (
+        <img src={img} title="img" alt={text} />
+      )}
+    </Container>
   );
 }
+
+export default memo(Local);

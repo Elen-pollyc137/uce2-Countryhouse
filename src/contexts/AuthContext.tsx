@@ -7,7 +7,7 @@ type IError = string | boolean;
 
 type IMessage = string | boolean;
 type IAuthProvider = {
-  user: IUser | boolean;
+  user: IUser;
   setUser: (user: IUser) => void;
   login: boolean;
   setLogin: (status: boolean) => void;
@@ -20,6 +20,12 @@ type IAuthProvider = {
 
   message: IMessage;
   setMessage: (status: IMessage) => void;
+
+  myLocal: any;
+  setMyLocal: (status: any) => void;
+
+  form: any;
+  setForm: (status: any) => void;
 };
 
 export const AuthContext = createContext({} as IAuthProvider);
@@ -32,6 +38,9 @@ export function AuthProvider({ children }: any) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<IError>(false);
   const [message, setMessage] = useState<IMessage>(false);
+  const [myLocal, setMyLocal] = useState<any>(false);
+  const [form, setForm] = useState<boolean>(false);
+
   if (error || message) {
     setTimeout(() => {
       setError(false);
@@ -56,6 +65,12 @@ export function AuthProvider({ children }: any) {
 
         message,
         setMessage,
+
+        myLocal,
+        setMyLocal,
+
+        form,
+        setForm,
       }}
     >
       {children}

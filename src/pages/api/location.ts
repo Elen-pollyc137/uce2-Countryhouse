@@ -22,9 +22,19 @@ export default async function handler(
   if (id) {
     switch (method) {
       case 'GET': {
-        const local: any = await Local.find({ userId: id });
-
-        return res.status(200).json(local);
+        const locals: any = await Local.find({ user: id }).populate('user');
+        const localFormat = locals.map((item: any) => ({
+          id: item._id,
+          name: item.name,
+          description: item.description,
+          lat: item.lat,
+          lng: item.lng,
+          price: item.price,
+          img: item.img,
+          phone: item.user.phone,
+          available: item.available,
+        }));
+        return res.status(200).json(localFormat);
       }
       default:
         res.setHeader('Allow', ['GET', 'PUT']);

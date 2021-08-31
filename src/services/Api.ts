@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from '../helpers/Cookies';
 
 export const getApiUrl = (path: string) => {
-  return `http://192.168.2.121:3000${path}`;
+  return `http://localhost:3000${path}`;
 };
 
 export const getHeaders = () => {
@@ -29,15 +29,47 @@ export const apiPost = (path: string, data: any) => {
   return axios.post(url, data, options);
 };
 
+export const apiPut = (path: string, data: any) => {
+  const url = getApiUrl(path);
+
+  const options = { headers: getHeaders() };
+
+  return axios.put(url, data, options);
+};
+
+export const apiDelete = (path: string) => {
+  const url = getApiUrl(path);
+
+  const options = { headers: getHeaders() };
+
+  return axios.delete(url, options);
+};
+
 export const apiFormData = (path: string, data: any) => {
   const url = getApiUrl(path);
   const token = getToken();
   const options = {
     headers: {
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': `multipart/form-data`,
       Authorization: `Bearer ${token}`,
     },
   };
 
   return axios.post(url, data, options);
+};
+export const apiFormDataPut = (path: string, data: any) => {
+  const url = getApiUrl(path);
+  const token = getToken();
+  const options = {
+    headers: {
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': `multipart/form-data`,
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  return axios.put(url, data, options);
 };

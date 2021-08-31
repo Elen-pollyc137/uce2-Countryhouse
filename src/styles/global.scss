@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Roboto, sans-serif;
+  font-family: Work Sans, sans-serif;
 }
 
 :root {
@@ -15,11 +15,22 @@
   --gray-900: #121214;
 
   --orange-500: #ff7913;
-  --blue-500: #26424f;
-  --blue-300: #3b697e;
+  --blue-500: #718096;
+  --blue-300: #edf2f7;
+  --blue-100: #f7fafc;
+  --red: #fa2a2a;
+  --grem-200: #06d6a0;
+  --yellow: #feb000;
+  --linear: linear-gradient(90.81deg, #f56565 0%, #ed64a6 100%);
 }
 body {
   color: var(--gray-900);
+  background-color: #ffffff;
+  background-image: url('/../Assets/bg.svg');
+  background-repeat: no-repeat;
+  background-position: right 8rem bottom -32rem;
+
+  background-size: cover;
 }
 
 @media (max-width: 1080px) {

@@ -1,51 +1,96 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
+import Head from 'next/head';
+import styles from './styles.module.scss';
+import { GoPlus } from 'react-icons/go';
+import LocalPointer from '../../components/LocalPointer';
 import Local from '../../components/Local';
+import House from '../../components/House';
+import FormHouse from '../../components/FormHouse';
+import { defaultProps } from '../../../utils/defaultProps';
 import { useUser } from '../../hooks/useUser';
-import Router from 'next/router';
 const key = process.env.NEXT_PUBLIC_KEY_MAP as string;
 
 export default function Register() {
-  const { login } = useUser();
-
-  if (!login) Router.push('/');
-  const [onMapClicked, setOnMapClicked] = useState({
-    lat: -15.7420889,
-    lng: -43.0286046,
-  });
-  console.log(onMapClicked);
-  const defaultProps = {
-    center: {
-      lat: -15.7420889,
-      lng: -43.0286046,
-    },
-    zoom: 12,
-  };
+  const [data, setData] = useState<any>(false);
+  const [lat, setLat] = useState<number>();
+  const [lng, setLng] = useState<number>();
+  const { fetchLocal, myLocal, local, setLocal, form, setForm, login } =
+    useUser();
+  if (!login) {
+    console.log(login);
+  }
   function mapClicked(mapProps: any) {
-    console.log(mapProps);
-
-    setOnMapClicked({ lat: mapProps.lat, lng: mapProps.lng });
+    if (form) {
+      setLat(mapProps.lat);
+      setLng(mapProps.lng);
+    }
+  }
+  function mapClickedLocal(data: any) {
+    setData(data);
+    setLocal(true);
   }
 
+  useEffect(() => {
+    fetchLocal();
+    // eslint-disable-next-line
+  }, []);
+
   return (
-    <div style={{ height: '400px', width: '400px' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{
-          key,
-          language: 'pt-br',
-        }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
-        onClick={mapClicked}
-        options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
-      >
-        <Local lat={onMapClicked.lat} lng={onMapClicked.lng} text="" />
-      </GoogleMapReact>
-      <img
-        src="https://nextjs-location-files.s3.amazonaws.com/961c7282eebbbc0766ffb887f1a33f42-download.jpeg"
-        alt=""
-      />
-    </div>
+    <>
+      <Head>
+        <title>Country House | Register</title>
+
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+
+      <section className={styles.container}>
+        <div className={styles.map}>
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key,
+              language: 'pt-br',
+            }}
+            defaultCenter={defaultProps.center}
+            defaultZoom={defaultProps.zoom}
+            onClick={mapClicked}
+            options={(map) => ({ mapTypeId: map.MapTypeId.SATELLITE })}
+          >
+            {form && lat && lng && <LocalPointer lat={lat} lng={lng} />}
+            {myLocal &&
+              !form &&
+              myLocal.map((local: any) => (
+                <Local
+                  onClick={() => mapClickedLocal(local)}
+                  key={local.id}
+                  lat={local.lat}
+                  lng={local.lng}
+                  text={local.name}
+                  img={local.img}
+                  available={local.available}
+                />
+              ))}
+          </GoogleMapReact>
+          {!form && (
+            <button onClick={() => setForm(!form)} className={styles.buttonAdd}>
+              <GoPlus size={16} />
+              <span>Novo Local</span>
+            </button>
+          )}
+        </div>
+        {form && (
+          <FormHouse
+            lat={lat}
+            lng={lng}
+            fetchLocal={fetchLocal}
+            setForm={setForm}
+            form={form}
+          />
+        )}
+        {local && !form && (
+          <House setLocal={setLocal} data={data} isLogin={true} />
+        )}
+      </section>
+    </>
   );
 }

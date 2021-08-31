@@ -9,6 +9,6 @@ const option = {
   useFindAndModify: false,
 };
 
-export default async function database() {
-  return await mongoose.connect(MONGODB_URI, option);
+export default async function database(URI = MONGODB_URI) {
+  return await mongoose.connect(URI, option);
 }

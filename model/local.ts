@@ -5,8 +5,7 @@ export interface ILocal extends Document {
   description: string;
   lat: string;
   lng: string;
-  phone: string;
-  userId: string;
+  user: any;
   img: string;
   price: string;
   available: boolean;
@@ -21,13 +20,13 @@ const LocalSchema: Schema = new Schema({
   description: { type: String, required: true },
   lat: { type: String, required: true },
   lng: { type: String, required: true },
-  phone: { type: String, required: true },
   img: { type: String, required: true },
   price: { type: String, required: true },
   available: { type: Boolean, required: true },
-  userId: {
-    type: String,
+  user: {
+    type: Schema.Types.ObjectId,
     ref: 'User',
+    require: true,
   },
 });
 

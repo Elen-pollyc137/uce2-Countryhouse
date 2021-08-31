@@ -1,0 +1,23 @@
+.loading {
+  width: 100%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    width: 3rem;
+    height: 3rem;
+    background: transparent;
+    border: 6px solid #f56565;
+    border-top-color: var(--white);
+    border-radius: 50%;
+    animation: isRotation 0.9s ease infinite;
+  }
+
+  @keyframes isRotation {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}

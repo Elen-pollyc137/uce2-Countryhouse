@@ -1,18 +1,16 @@
-import ToolTip from '../ToolTip';
-import styles from './styles.module.scss';
-
+import { Container } from './styles';
 type Content = {
   lat: Number;
   lng: Number;
   text: string;
-  img: string;
+  img?: string;
+  onClick?: any;
 };
-export default function LocalTour({ img, text }: Content) {
+
+export default function Local({ img, text, onClick }: Content) {
   return (
-    <ToolTip text={text}>
-      <div className={styles.container}>
-        <img src={img} alt="" />
-      </div>
-    </ToolTip>
+    <Container onClick={onClick}>
+      <img src={img} title="img" alt={text} />
+    </Container>
   );
 }

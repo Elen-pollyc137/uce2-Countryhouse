@@ -44,8 +44,8 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       return res.status(201).json({
         user: {
           name: user.name,
-          phone: user.phone,
           email: user.email,
+          phone: user.phone,
         },
         token,
       });
