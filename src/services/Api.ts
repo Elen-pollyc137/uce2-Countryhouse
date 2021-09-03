@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { getToken } from '../helpers/Cookies';
+const URI = process.env.NEXT_PUBLIC_API as string;
 
 export const getApiUrl = (path: string) => {
-  return `http://localhost:3000${path}`;
+  return `${URI}${path}`;
 };
 
 export const getHeaders = () => {
@@ -15,6 +16,8 @@ export const getHeaders = () => {
 };
 export const apiGet = (path: string) => {
   const url = getApiUrl(path);
+
+  console.log('*** url api', url);
   const options = {
     headers: getHeaders(),
   };

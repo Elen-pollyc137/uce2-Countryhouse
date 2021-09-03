@@ -2,10 +2,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import database from '../../../lib/database';
 
-import { User } from '../../../model/user';
-
 import { JWT } from '../../../utils/jwt';
 import { Local } from '../../../model/local';
+import { User } from '../../../model/user';
 
 type Auth = {
   authorization: string;
@@ -22,7 +21,10 @@ export default async function handler(
   if (id) {
     switch (method) {
       case 'GET': {
-        const locals: any = await Local.find({ user: id }).populate('user');
+        const locals: any = await Local.find({ user: id }).populate(
+          'user',
+          User
+        );
         const localFormat = locals.map((item: any) => ({
           id: item._id,
           name: item.name,
