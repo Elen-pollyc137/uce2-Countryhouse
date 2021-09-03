@@ -1,6 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import database from '../../../lib/database';
+import initMiddleware from '../../../lib/init-middleware';
+import Cors from 'cors';
 
 import { User } from '../../../model/user';
 
@@ -9,11 +11,17 @@ import { JWT } from '../../../utils/jwt';
 type Auth = {
   authorization: string;
 };
-
+const cors = initMiddleware(
+  Cors({
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
+  })
+);
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await cors(req, res);
+
   const id = await JWT(req);
   await database();
   const { method } = req;

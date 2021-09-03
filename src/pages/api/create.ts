@@ -3,12 +3,20 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { User } from '../../../model/user';
 import { hash } from 'bcrypt';
 import { validateEmail } from '../../../utils/validate';
-import { v4 } from 'uuid';
+import Cors from 'cors';
+import initMiddleware from '../../../lib/init-middleware';
 
+const cors = initMiddleware(
+  Cors({
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
+  })
+);
 export default async function create(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await cors(req, res);
+
   if (req.method === 'POST') {
     try {
       await database();
