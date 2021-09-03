@@ -84,7 +84,10 @@ export function useUser() {
 
       formData.append('available', body === true ? '1' : '0');
 
-      const { data } = await apiFormDataPut(`/api/${id}`, formData);
+      const { data } = await apiFormDataPut(
+        `/api/fileupdate?file=${id}`,
+        formData
+      );
       setMessage('Alterado com sucesso!');
       fetchLocal();
     } catch (err) {
@@ -107,7 +110,7 @@ export function useUser() {
     try {
       setLoading({ delete: true });
       setError(false);
-      const { data } = await apiDelete(`/api/${id}`);
+      const { data } = await apiDelete(`/api/filedelete?file=${id}`);
       data && setMessage('Deletado com sucesso!');
       fetchLocal();
     } catch (err) {
@@ -140,7 +143,7 @@ export function useUser() {
       formData.append('price', String(body.price) as string);
       formData.append('available', body.available === true ? '1' : '0');
 
-      const { data } = await apiFormData('/api/file', formData);
+      const { data } = await apiFormData('/api/filecreate', formData);
       if (data) {
         setMessage('Criado com sucesso!');
         setForm(false);
