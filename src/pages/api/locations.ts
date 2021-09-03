@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import database from '../../../lib/database';
+import initMiddleware from '../../../lib/init-middleware';
+import Cors from 'cors';
 
 import { Local } from '../../../model/local';
 import { User } from '../../../model/user';
@@ -7,11 +9,17 @@ import { User } from '../../../model/user';
 type Auth = {
   authorization: string;
 };
-
+const cors = initMiddleware(
+  Cors({
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
+  })
+);
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await cors(req, res);
+
   const { method } = req;
   await database();
 
