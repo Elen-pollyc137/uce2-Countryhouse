@@ -5,7 +5,6 @@ import nc from 'next-connect';
 import { v4 } from 'uuid';
 import initMiddleware from '../../../lib/init-middleware';
 
-import { User } from '../../../model/user';
 import { Local } from '../../../model/local';
 import Cors from 'cors';
 
