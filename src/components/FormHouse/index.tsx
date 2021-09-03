@@ -27,7 +27,7 @@ export default function FormHouse({ lat, lng, setForm }: any) {
         <GrFormClose size={32} />
       </button>
       <form
-        style={loading ? { opacity: 0.4 } : { opacity: 1 }}
+        style={loading['create'] ? { opacity: 0.4 } : { opacity: 1 }}
         onSubmit={handleSubmit(handleCreateLocal)}
       >
         <div className={styles.title}>

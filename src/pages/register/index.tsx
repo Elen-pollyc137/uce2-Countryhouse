@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Head from 'next/head';
 import styles from './styles.module.scss';
@@ -11,15 +11,13 @@ import { defaultProps } from '../../../utils/defaultProps';
 import { useUser } from '../../hooks/useUser';
 const key = process.env.NEXT_PUBLIC_KEY_MAP as string;
 
-export default function Register() {
+function Register() {
   const [data, setData] = useState<any>(false);
   const [lat, setLat] = useState<number>();
   const [lng, setLng] = useState<number>();
   const { fetchLocal, myLocal, local, setLocal, form, setForm, login } =
     useUser();
-  if (!login) {
-    console.log(login);
-  }
+
   function mapClicked(mapProps: any) {
     if (form) {
       setLat(mapProps.lat);
@@ -33,6 +31,8 @@ export default function Register() {
 
   useEffect(() => {
     fetchLocal();
+    console.log('Register *** ', myLocal);
+
     // eslint-disable-next-line
   }, []);
 
@@ -79,13 +79,7 @@ export default function Register() {
           )}
         </div>
         {form && (
-          <FormHouse
-            lat={lat}
-            lng={lng}
-            fetchLocal={fetchLocal}
-            setForm={setForm}
-            form={form}
-          />
+          <FormHouse lat={lat} lng={lng} setForm={setForm} form={form} />
         )}
         {local && !form && (
           <House setLocal={setLocal} data={data} isLogin={true} />
@@ -94,3 +88,5 @@ export default function Register() {
     </>
   );
 }
+
+export default memo(Register);

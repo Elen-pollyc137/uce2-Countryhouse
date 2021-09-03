@@ -15,7 +15,7 @@ function Local({ img, text, available, onClick }: Content) {
   const { loading } = useUser();
   return (
     <Container onClick={onClick} available={available}>
-      {loading ? (
+      {loading.local ? (
         <div
           style={{
             display: 'flex',

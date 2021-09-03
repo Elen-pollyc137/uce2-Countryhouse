@@ -30,7 +30,11 @@ export default function House({ setLocal, data, isLogin }: any) {
   return (
     <div className={styles.containerHouse}>
       <div
-        style={loading ? { opacity: 0.4 } : { opacity: 1 }}
+        style={
+          loading['edit'] || loading['delete']
+            ? { opacity: 0.4 }
+            : { opacity: 1 }
+        }
         className={styles.house}
       >
         <div className={styles.containerImg}>
@@ -87,7 +91,7 @@ export default function House({ setLocal, data, isLogin }: any) {
               justifyContent: 'center',
             }}
           >
-            {loading && <Loading />}
+            {loading.edit && <Loading />}
           </div>
         </div>
       </div>

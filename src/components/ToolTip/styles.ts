@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-type ITooltip = { text: string };
+type ITooltip = { name: string };
 export const Tip = styled.div`
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@ export const Tip = styled.div`
   &:hover::before {
     pointer-events: none;
 
-    content: '${(props: ITooltip) => props.text}';
+    content: '${(props: ITooltip) => props.name}';
     position: absolute;
     top: -4.5rem;
     display: flex;

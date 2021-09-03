@@ -5,15 +5,15 @@ type IUser = {
 } | null;
 type IError = string | boolean;
 
-type IMessage = string | boolean;
+type IMessage = string | boolean | any;
 type IAuthProvider = {
   user: IUser;
   setUser: (user: IUser) => void;
   login: boolean;
   setLogin: (status: boolean) => void;
 
-  loading: boolean;
-  setLoading: (status: boolean) => void;
+  loading: boolean | any;
+  setLoading: (status: boolean | any) => void;
 
   error: IError;
   setError: (status: IError) => void;
@@ -35,7 +35,7 @@ const { Provider } = AuthContext;
 export function AuthProvider({ children }: any) {
   const [user, setUser] = useState<IUser>(null);
   const [login, setLogin] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean | any>(false);
   const [error, setError] = useState<IError>(false);
   const [message, setMessage] = useState<IMessage>(false);
   const [myLocal, setMyLocal] = useState<any>(false);

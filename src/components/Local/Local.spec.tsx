@@ -1,5 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import Local from '.';
+jest.mock('../../hooks/useUser', () => {
+  return {
+    useUser() {
+      return {
+        login: true,
+        loading: { local: false },
+      };
+    },
+  };
+});
 
 test('local pointer in map select ', () => {
   render(

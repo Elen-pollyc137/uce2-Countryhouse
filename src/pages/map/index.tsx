@@ -57,6 +57,7 @@ export default function Location({ pointer }: IPointerArray) {
   }
   useEffect(() => {
     fetchLocal();
+
     // eslint-disable-next-line
   }, []);
 

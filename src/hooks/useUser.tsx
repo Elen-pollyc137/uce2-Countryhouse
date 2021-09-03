@@ -54,9 +54,10 @@ export function useUser() {
     form,
     setForm,
   } = useContext(AuthContext);
+
   async function fetchLocal() {
     try {
-      setLoading(true);
+      setLoading({ local: true });
       setError(false);
       const { data } = await apiGet('/api/location');
       setMyLocal(data);
@@ -72,12 +73,12 @@ export function useUser() {
       }
       setError(message);
     } finally {
-      setLoading(false);
+      setLoading({ local: false });
     }
   }
   async function fetchLocalEdit(body: any, id: string) {
     try {
-      setLoading(true);
+      setLoading({ edit: true });
       setError(false);
       const formData = new FormData();
 
@@ -85,6 +86,7 @@ export function useUser() {
 
       const { data } = await apiFormDataPut(`/api/${id}`, formData);
       setMessage('Alterado com sucesso!');
+      fetchLocal();
     } catch (err) {
       const { data, status } = await err.response;
       const { message } = await data;
@@ -98,12 +100,12 @@ export function useUser() {
 
       setError(message);
     } finally {
-      setLoading(false);
+      setLoading({ edit: false });
     }
   }
   async function fetchLocalDelete(id: string) {
     try {
-      setLoading(true);
+      setLoading({ delete: true });
       setError(false);
       const { data } = await apiDelete(`/api/${id}`);
       data && setMessage('Deletado com sucesso!');
@@ -122,12 +124,12 @@ export function useUser() {
 
       setError(message);
     } finally {
-      setLoading(false);
+      setLoading({ delete: false });
     }
   }
   async function fetchCreateLocal(body: any, lat: any, lng: any, file: any) {
     try {
-      setLoading(true);
+      setLoading({ create: true });
       setError(false);
       const formData = new FormData();
       formData.append('file', file.raw);
@@ -140,9 +142,9 @@ export function useUser() {
 
       const { data } = await apiFormData('/api/file', formData);
       if (data) {
-        fetchLocal();
         setMessage('Criado com sucesso!');
         setForm(false);
+        fetchLocal();
       }
     } catch (err) {
       const { data, status } = await err.response;
@@ -156,12 +158,12 @@ export function useUser() {
       }
       setError(message);
     } finally {
-      setLoading(false);
+      setLoading({ create: false });
     }
   }
   async function userLogin({ email, password }: ILogin) {
     try {
-      setLoading(true);
+      setLoading({ login: true });
       setError(false);
       const { data } = await apiPost('/api/login', {
         email,
@@ -187,7 +189,7 @@ export function useUser() {
       }
       setError(message);
     } finally {
-      setLoading(false);
+      setLoading({ login: false });
     }
   }
   async function userCreate({
