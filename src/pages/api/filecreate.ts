@@ -28,6 +28,7 @@ const cors = initMiddleware(
 );
 
 const handler = nc()
+  .use(Cors())
   .use(upload.single('file'))
   .post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     await cors(req, res);

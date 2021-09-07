@@ -71,7 +71,7 @@ const handler = nc()
 export const config = {
   api: {
     externalResolver: true,
-    bodyParser: false,
+    bodyParser: true,
   },
 };
 
