@@ -9,7 +9,9 @@ aws.config.update({
   region: process.env.AWS_REGION_APP,
 });
 
-var s3 = new aws.S3();
+var s3 = new aws.S3({
+  //-----//
+});
 
 const upload = multer({
   storage: multerS3({

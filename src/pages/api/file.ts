@@ -31,7 +31,7 @@ const handler = nc()
   .use(upload.single('file'))
   .post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     await cors(req, res);
-
+    console.log(req);
     const id: string = await JWT(req);
     await database();
 
@@ -144,6 +144,7 @@ const handler = nc()
 
 export const config = {
   api: {
+    externalResolver: true,
     bodyParser: false,
   },
 };

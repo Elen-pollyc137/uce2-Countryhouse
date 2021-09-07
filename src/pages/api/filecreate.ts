@@ -47,7 +47,7 @@ const handler = nc()
         lat,
         lng,
         price,
-        img: req.file.location,
+        img: req?.file?.location,
         user: id,
         available: parseAvailable,
       });
@@ -59,9 +59,8 @@ const handler = nc()
 
 export const config = {
   api: {
-    bodyParser: {
-      sizeLimit: '5mb',
-    },
+    externalResolver: true,
+    bodyParser: false,
   },
 };
 
