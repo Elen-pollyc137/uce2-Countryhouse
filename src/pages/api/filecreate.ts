@@ -29,7 +29,7 @@ const cors = initMiddleware(
 
 const handler = nc()
   .use(upload.single('file'))
-  .post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
+  .put(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     await cors(req, res);
 
     const id: string = await JWT(req);
