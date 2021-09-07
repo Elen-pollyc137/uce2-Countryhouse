@@ -15,12 +15,12 @@ export const getHeaders = () => {
   };
 };
 export const apiGet = (path: string) => {
-  const url = getApiUrl(path).replace('undefined', '');
+  const url = getApiUrl(path);
 
   const options = {
     headers: getHeaders(),
   };
-  return axios.get(url, options);
+  return axios.get(url.replace('undefined', ''), options);
 };
 
 export const apiPost = (path: string, data: any) => {
@@ -28,7 +28,7 @@ export const apiPost = (path: string, data: any) => {
 
   const options = { headers: getHeaders() };
 
-  return axios.post(url, data, options);
+  return axios.post(url.replace('undefined', ''), data, options);
 };
 
 export const apiPut = (path: string, data: any) => {
@@ -36,7 +36,7 @@ export const apiPut = (path: string, data: any) => {
 
   const options = { headers: getHeaders() };
 
-  return axios.put(url, data, options);
+  return axios.put(url.replace('undefined', ''), data, options);
 };
 
 export const apiDelete = (path: string) => {
@@ -44,7 +44,7 @@ export const apiDelete = (path: string) => {
 
   const options = { headers: getHeaders() };
 
-  return axios.delete(url, options);
+  return axios.delete(url.replace('undefined', ''), options);
 };
 
 export const apiFormData = (path: string, data: any) => {
@@ -59,7 +59,7 @@ export const apiFormData = (path: string, data: any) => {
     },
   };
 
-  return axios.post(url, data, options);
+  return axios.post(url.replace('undefined', ''), data, options);
 };
 export const apiFormDataPut = (path: string, data: any) => {
   const url = getApiUrl(path);
@@ -73,5 +73,5 @@ export const apiFormDataPut = (path: string, data: any) => {
     },
   };
 
-  return axios.put(url, data, options);
+  return axios.put(url.replace('undefined', ''), data, options);
 };
