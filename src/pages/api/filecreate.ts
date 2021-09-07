@@ -20,18 +20,12 @@ type NextApiRequestWithFormData = NextApiRequest & {
 type IFileQuery = {
   _id: string;
 };
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
-    origin: '*',
-  })
-);
 
 const handler = nc()
+  .use(Cors())
   .use(upload.single('file'))
   .post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
-    await cors(req, res);
+    // await cors(req, res);
 
     const id: string = await JWT(req);
     await database();
@@ -48,7 +42,7 @@ const handler = nc()
         lat,
         lng,
         price,
-        img: req?.file?.location,
+        img: req.file.location,
         user: id,
         available: parseAvailable,
       });
@@ -60,7 +54,6 @@ const handler = nc()
 
 export const config = {
   api: {
-    externalResolver: true,
     bodyParser: false,
   },
 };

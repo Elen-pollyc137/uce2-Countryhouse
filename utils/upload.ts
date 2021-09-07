@@ -9,9 +9,7 @@ aws.config.update({
   region: process.env.AWS_REGION_APP,
 });
 
-var s3 = new aws.S3({
-  //-----//
-});
+var s3 = new aws.S3();
 
 const upload = multer({
   storage: multerS3({
@@ -22,8 +20,6 @@ const upload = multer({
     },
     key(req, file, cb) {
       crypto.randomBytes(16, (err, hash) => {
-        console.log(file);
-
         if (err) cb(err);
 
         const fileName = `${hash.toString('hex')}-${file.originalname}`;
