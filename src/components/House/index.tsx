@@ -28,7 +28,7 @@ export default function House({ setLocal, data, isLogin }: any) {
   }, [data]);
 
   return (
-    <div className={styles.containerHouse}>
+    <div className={`${styles.containerHouse} ${styles.animeLeft}`}>
       <div
         style={
           loading['edit'] || loading['delete']

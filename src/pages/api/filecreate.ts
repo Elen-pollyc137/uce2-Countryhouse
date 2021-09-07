@@ -29,7 +29,7 @@ const cors = initMiddleware(
 
 const handler = nc()
   .use(upload.single('file'))
-  .put(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
+  .post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     await cors(req, res);
 
     const id: string = await JWT(req);
@@ -59,7 +59,9 @@ const handler = nc()
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: {
+      sizeLimit: '5mb',
+    },
   },
 };
 

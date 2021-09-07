@@ -22,70 +22,68 @@ const Home: NextPage = () => {
     userLogin(data);
   }
   return (
-    <div>
+    <section className={styles.container}>
       <Head>
         <title>Country House | Login</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <section className={styles.container}>
-        <div className={styles.containerLeft}>
-          <div className={styles.contentText}>
-            Country<span className={styles.span}>&</span>House O lugar para
-            encotrar sua melhor versão.
-          </div>
-          <img src="/Assets/frame.svg" alt="frame" className={styles.image} />
+      <div className={styles.containerLeft}>
+        <div className={styles.contentText}>
+          Country<span className={styles.span}>&</span>House O lugar para
+          encotrar sua melhor versão.
         </div>
-        <div className={styles.containerForm}>
-          <form onSubmit={handleSubmit(handleLogin)} className={styles.form}>
-            <label className={styles.title} htmlFor="">
-              Login <span className={styles.span}>!</span>
-            </label>
-            <input {...register('email')} type="email" placeholder="e-mail" />
-            <div className={styles.password}>
-              <input
-                {...register('password')}
-                placeholder="senha"
-                type={visible ? 'password' : 'text'}
+        <img src="/Assets/frame.svg" alt="frame" className={styles.image} />
+      </div>
+      <div className={styles.containerForm}>
+        <form onSubmit={handleSubmit(handleLogin)} className={styles.form}>
+          <label className={styles.title} htmlFor="">
+            Login <span className={styles.span}>!</span>
+          </label>
+          <input {...register('email')} type="email" placeholder="e-mail" />
+          <div className={styles.password}>
+            <input
+              {...register('password')}
+              placeholder="senha"
+              type={visible ? 'password' : 'text'}
+            />
+            {visible ? (
+              <BsFillEyeFill
+                className={styles.eyes}
+                onClick={() => setVisible(!visible)}
+                size={22}
               />
-              {visible ? (
-                <BsFillEyeFill
-                  className={styles.eyes}
-                  onClick={() => setVisible(!visible)}
-                  size={22}
-                />
-              ) : (
-                <BsFillEyeSlashFill
-                  className={styles.eyes}
-                  onClick={() => setVisible(!visible)}
-                  size={22}
-                />
-              )}
-            </div>
-            {!loading ? (
-              <button className={styles.button} type="submit">
-                Entrar
-              </button>
             ) : (
-              <button
-                disabled
-                style={{ opacity: 0.5 }}
-                className={styles.button}
-                type="submit"
-              >
-                <Loading />
-              </button>
+              <BsFillEyeSlashFill
+                className={styles.eyes}
+                onClick={() => setVisible(!visible)}
+                size={22}
+              />
             )}
-            <span>{error && error}</span>
-            <span className={styles.sign}>
-              Ainda não tem conta?
-              <strong>
-                <Link href="/signup">Cadastre-se já!</Link>
-              </strong>
-            </span>
-          </form>
-        </div>
-      </section>
-    </div>
+          </div>
+          {!loading ? (
+            <button className={styles.button} type="submit">
+              Entrar
+            </button>
+          ) : (
+            <button
+              disabled
+              style={{ opacity: 0.5 }}
+              className={styles.button}
+              type="submit"
+            >
+              <Loading />
+            </button>
+          )}
+          <span>{error && error}</span>
+          <span className={styles.sign}>
+            Ainda não tem conta?
+            <strong>
+              <Link href="/signup">Cadastre-se já!</Link>
+            </strong>
+          </span>
+        </form>
+      </div>
+    </section>
   );
 };
 

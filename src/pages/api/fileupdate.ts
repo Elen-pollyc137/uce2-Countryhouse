@@ -70,7 +70,9 @@ const handler = nc()
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: {
+      sizeLimit: '5mb',
+    },
   },
 };
 
