@@ -3,7 +3,8 @@ import { getToken } from '../helpers/Cookies';
 const URI = process.env.NEXT_PUBLIC_API as string;
 
 export const getApiUrl = (path: string) => {
-  return `${URI}${path}`;
+  console.log('***URI', URI + path);
+  return 'https://countryhouse-sand.vercel.app' + path;
 };
 
 export const getHeaders = () => {
