@@ -24,11 +24,11 @@ const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
   Cors({
     methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
+    origin: '*',
   })
 );
 
 const handler = nc()
-  .use(Cors())
   .use(upload.single('file'))
   .post(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     await cors(req, res);
