@@ -2,8 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import database from '../../../lib/database';
 import nc from 'next-connect';
-import { v4 } from 'uuid';
-import initMiddleware from '../../../lib/init-middleware';
 
 import { Local } from '../../../model/local';
 import Cors from 'cors';

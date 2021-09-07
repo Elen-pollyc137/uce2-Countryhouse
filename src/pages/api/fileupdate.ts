@@ -22,7 +22,7 @@ type IFileQuery = {
 };
 
 const handler = nc()
-  .use(Cors())
+  .use(Cors({ origin: '*' }))
   .use(upload.single('file'))
   .put(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     //await cors(req, res);
@@ -34,7 +34,6 @@ const handler = nc()
       const { body, query } = req;
       const { file } = query;
 
-      console.log('***query', query);
       const fields = [
         'name',
         'description',
