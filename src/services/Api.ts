@@ -3,6 +3,7 @@ import { getToken } from '../helpers/Cookies';
 const URI = process.env.NEXT_PUBLIC_API as string;
 
 export const getApiUrl = (path: string) => {
+  console.log('url *** getApiUrl ', `${URI}${path}`);
   return `${URI}${path}`;
 };
 
@@ -20,7 +21,7 @@ export const apiGet = (path: string) => {
   const options = {
     headers: getHeaders(),
   };
-  return axios.get(url.replace('undefined', ''), options);
+  return axios.get(url, options);
 };
 
 export const apiPost = (path: string, data: any) => {
@@ -28,7 +29,7 @@ export const apiPost = (path: string, data: any) => {
 
   const options = { headers: getHeaders() };
 
-  return axios.post(url.replace('undefined', ''), data, options);
+  return axios.post(url, data, options);
 };
 
 export const apiPut = (path: string, data: any) => {
@@ -36,7 +37,7 @@ export const apiPut = (path: string, data: any) => {
 
   const options = { headers: getHeaders() };
 
-  return axios.put(url.replace('undefined', ''), data, options);
+  return axios.put(url, data, options);
 };
 
 export const apiDelete = (path: string) => {
@@ -44,7 +45,7 @@ export const apiDelete = (path: string) => {
 
   const options = { headers: getHeaders() };
 
-  return axios.delete(url.replace('undefined', ''), options);
+  return axios.delete(url, options);
 };
 
 export const apiFormData = (path: string, data: any) => {
@@ -59,7 +60,7 @@ export const apiFormData = (path: string, data: any) => {
     },
   };
 
-  return axios.post(url.replace('undefined', ''), data, options);
+  return axios.post(url, data, options);
 };
 export const apiFormDataPut = (path: string, data: any) => {
   const url = getApiUrl(path);
@@ -73,5 +74,5 @@ export const apiFormDataPut = (path: string, data: any) => {
     },
   };
 
-  return axios.put(url.replace('undefined', ''), data, options);
+  return axios.put(url, data, options);
 };

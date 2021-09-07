@@ -60,7 +60,7 @@ const Home: NextPage = () => {
               />
             )}
           </div>
-          {!loading ? (
+          {!loading.login ? (
             <button className={styles.button} type="submit">
               Entrar
             </button>
@@ -74,7 +74,6 @@ const Home: NextPage = () => {
               <Loading />
             </button>
           )}
-          <span>{error && error}</span>
           <span className={styles.sign}>
             Ainda não tem conta?
             <strong>
