@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import database from '../../../lib/database';
 import nc from 'next-connect';
-import { v4 } from 'uuid';
 import initMiddleware from '../../../lib/init-middleware';
 
 import { Local } from '../../../model/local';
@@ -20,12 +19,17 @@ type NextApiRequestWithFormData = NextApiRequest & {
 type IFileQuery = {
   _id: string;
 };
+const cors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
+  })
+);
 
 const handler = nc()
-  .use(Cors({ origin: '*' }))
   .use(upload.single('file'))
   .put(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
-    //await cors(req, res);
+    await cors(req, res);
 
     const id: string = await JWT(req);
     await database();
@@ -34,6 +38,7 @@ const handler = nc()
       const { body, query } = req;
       const { file } = query;
 
+      console.log('***query', query);
       const fields = [
         'name',
         'description',
