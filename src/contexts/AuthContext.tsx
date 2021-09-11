@@ -2,6 +2,8 @@ import { createContext, useState } from 'react';
 
 type IUser = {
   name: string;
+  email: string;
+  phone: string;
 } | null;
 type IError = string | boolean;
 

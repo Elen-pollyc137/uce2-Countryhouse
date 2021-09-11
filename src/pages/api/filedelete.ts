@@ -26,7 +26,6 @@ const cors = initMiddleware(
   })
 );
 const handler = nc()
-  .use()
   .use(upload.single('file'))
   .delete(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
     await cors(req, res);

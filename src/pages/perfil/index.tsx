@@ -7,7 +7,6 @@ import { useUser } from '../../hooks/useUser';
 export default function Perfil() {
   const [modal, setModal] = useState<any>(false);
   const { user } = useUser();
-  const { name, email, phone }: any = user;
   return (
     <section className={styles.container}>
       <Head>
@@ -18,15 +17,15 @@ export default function Perfil() {
       <div className={styles.card}>
         <div className={styles.wrapper__name}>
           <label htmlFor="">nome</label>
-          <p>{name}</p>
+          <p>{user?.name}</p>
         </div>
         <div className={styles.wrapper__email}>
           <label htmlFor="">e-mail</label>
-          <p>{email}</p>
+          <p>{user?.email}</p>
         </div>
         <div className={styles.wrapper__phone}>
           <label htmlFor="">phone</label>
-          <p>{phone}</p>
+          <p>{user?.phone}</p>
         </div>
         <div className={styles.wrapper__button}>
           <button onClick={() => setModal(true)}>editar</button>

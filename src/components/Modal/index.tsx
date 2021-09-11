@@ -4,7 +4,6 @@ import FormGroup from '../FormGroup';
 import styles from './styles.module.scss';
 const Modal = ({ setModal }: any) => {
   const { user, userEdit } = useUser();
-  const { name, email, phone }: any = user;
 
   function handleOutsideClick(e: any) {
     if (e.target === e.currentTarget) {
@@ -25,9 +24,24 @@ const Modal = ({ setModal }: any) => {
     <div className={styles.modal} onClick={handleOutsideClick}>
       <form onSubmit={handleUserEdit} className={styles.modalBox}>
         <div className={styles.title}>Editar Usuário</div>
-        <FormGroup name="name" label="nome" type="text" data={{ name }} />
-        <FormGroup name="email" label="email" type="text" data={{ email }} />
-        <FormGroup name="phone" label="Telefone" type="text" data={{ phone }} />
+        <FormGroup
+          name="name"
+          label="nome"
+          type="text"
+          data={{ name: user?.name }}
+        />
+        <FormGroup
+          name="email"
+          label="email"
+          type="text"
+          data={{ email: user?.email }}
+        />
+        <FormGroup
+          name="phone"
+          label="Telefone"
+          type="text"
+          data={{ phone: user?.phone }}
+        />
 
         <button type="submit">confirmar</button>
       </form>
