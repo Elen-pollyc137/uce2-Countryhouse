@@ -8,6 +8,7 @@ import Cors from 'cors';
 
 import { JWT } from '../../../utils/jwt';
 import upload from '../../../utils/upload';
+import initMiddleware from '../../../lib/init-middleware';
 
 type NextApiRequestWithFormData = NextApiRequest & {
   file: {
@@ -18,16 +19,17 @@ type NextApiRequestWithFormData = NextApiRequest & {
 type IFileQuery = {
   _id: string;
 };
-
+const cors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
+  })
+);
 const handler = nc()
-  .use(
-    Cors({
-      methods: ['GET', 'POST', 'OPTIONS', 'PUT'],
-    })
-  )
+  .use()
   .use(upload.single('file'))
   .delete(async (req: NextApiRequestWithFormData, res: NextApiResponse) => {
-    //await cors(req, res);
+    await cors(req, res);
 
     const id: string = await JWT(req);
     await database();
