@@ -1,0 +1,125 @@
+.container {
+  position: fixed;
+  height: 100%;
+  width: 24rem;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  padding: 0 1rem 1rem 1rem;
+  z-index: 999;
+  opacity: 0;
+  overflow: auto;
+  transform: translatex(-50px);
+  animation: animeLeft 0.5s forwards;
+  &::after {
+    position: relative;
+    content: '';
+  }
+  &::before {
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: black;
+    top: 0;
+    left: -100vw;
+    opacity: 0.6;
+    z-index: 3;
+  }
+
+  @keyframes animeLeft {
+    to {
+      opacity: 1;
+      transform: initial;
+    }
+  }
+}
+
+.form {
+  width: auto;
+  height: 100%;
+  padding: 1rem;
+}
+
+.wrapper {
+  width: 100%;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    padding-left: 0.5rem;
+    height: 2rem;
+    border-radius: 0.25rem;
+    border: none;
+    color: var(--gray-500);
+    background: var(--gray-100);
+
+    &:focus {
+      border: 2px solid var(--purple-600);
+      transition: all 0.1s ease;
+    }
+    &:hover {
+      border: 2px solid var(--purple-400);
+      transition: all 0.1s ease;
+    }
+  }
+}
+
+.check {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  label {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  input {
+    margin-left: 0.5rem;
+  }
+}
+
+.button {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  background: var(--purple-600);
+  border-radius: 0.25rem;
+  color: var(--white);
+}
+
+.close {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 2.5rem;
+  border-bottom: 1px sold var(--gray-100);
+  svg {
+    fill: var(--gray-500);
+
+    &:hover {
+      fill: var(--purple-600);
+    }
+  }
+}
+.errorForm {
+  height: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: red;
+}
+
+@media (max-width: 420px) {
+  .container {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}

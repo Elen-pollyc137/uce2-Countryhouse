@@ -89,7 +89,7 @@ const Home: NextPage = () => {
 export default Home;
 export async function getServerSideProps() {
   await database().then(() => {
-    console.log('conectado ao banco');
+    console.log('ok');
   });
 
   return { props: { pets: true } };

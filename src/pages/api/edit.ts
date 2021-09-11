@@ -7,6 +7,7 @@ import Cors from 'cors';
 import { User } from '../../../model/user';
 
 import { JWT } from '../../../utils/jwt';
+import { MdEmail } from 'react-icons/md';
 
 type Auth = {
   authorization: string;
@@ -40,7 +41,9 @@ export default async function handler(
           }
         });
         user.save();
-        return res.status(200).json(user);
+        return res.status(200).json({
+          user: { email: user.email, phone: user.phone, name: user.name },
+        });
       }
       default:
         res.setHeader('Allow', ['PUT']);

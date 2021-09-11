@@ -32,6 +32,9 @@ const Header: NextPage = () => {
             <Link href="/register">
               <a className={styles.login}>Meus Locais</a>
             </Link>
+            <Link href="/perfil">
+              <a className={styles.login}>Perfil</a>
+            </Link>
             <span className={`${styles.login} ${styles.hover}`}>
               <span>Olá </span>
               <strong>{user?.name}</strong>

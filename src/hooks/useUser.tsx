@@ -6,6 +6,7 @@ import {
   apiFormDataPut,
   apiGet,
   apiPost,
+  apiPut,
 } from '../services/Api';
 import Router from 'next/router';
 import {
@@ -164,6 +165,34 @@ export function useUser() {
       setLoading({ create: false });
     }
   }
+
+  async function userEdit({ email, name, phone }: any) {
+    try {
+      setLoading({ message: true });
+      setError(false);
+      const { data } = await apiPut('/api/edit', {
+        email,
+        name,
+        phone,
+      });
+      const { user } = await data;
+      setUser(user);
+      setCookUser(user);
+      setMessage('Usuário alterado com sucesso!');
+    } catch (error) {
+      const { data, status } = await error.response;
+      const { message } = await data;
+      if (status === 500) {
+        setError('Error servidor');
+      }
+      if (status === 401) {
+        setError(message);
+      }
+      setError(message);
+    } finally {
+      setLoading({ message: false });
+    }
+  }
   async function userLogin({ email, password }: ILogin) {
     try {
       setLoading({ login: true });
@@ -215,7 +244,7 @@ export function useUser() {
         phone,
       });
       const { message } = await data;
-      setMessage(message);
+      setMessage(`${message} , faça login para entrar`);
       setTimeout(() => {
         Router.push('/');
       }, 4000);
@@ -295,6 +324,7 @@ export function useUser() {
     fetchLocalEdit,
     fetchLocalDelete,
     fetchCreateLocal,
+    userEdit,
 
     setLocal,
     local,

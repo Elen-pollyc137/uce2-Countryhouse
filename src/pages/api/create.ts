@@ -46,7 +46,6 @@ export default async function create(
       });
       return res.status(201).json({ message: 'criado com Sucesso' });
     } catch (err) {
-      console.log(err);
       return res.status(500).send('error servidor');
     }
   } else {

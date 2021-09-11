@@ -38,7 +38,6 @@ const handler = nc()
       const { body, query } = req;
       const { file } = query;
 
-      console.log('***query', query);
       const fields = [
         'name',
         'description',

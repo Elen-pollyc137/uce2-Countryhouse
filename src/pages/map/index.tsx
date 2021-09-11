@@ -50,7 +50,6 @@ export default function Location({ pointer }: IPointerArray) {
     try {
       const { data } = await apiGet('/api/locations');
       setLocals(data);
-      console.log(data);
     } catch (error) {
       setError('Não foi possível pegar os Locais');
     }

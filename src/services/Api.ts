@@ -3,7 +3,6 @@ import { getToken } from '../helpers/Cookies';
 const URI = process.env.NEXT_PUBLIC_API as string;
 
 export const getApiUrl = (path: string) => {
-  console.log('url *** getApiUrl ', `${URI}${path}`);
   return `${URI}${path}`;
 };
 

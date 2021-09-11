@@ -1,0 +1,30 @@
+.wrapper {
+  width: 100%;
+  margin-top: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  font-family: Work Sans, sans-serif;
+
+  label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    padding-left: 0.5rem;
+    height: 2rem;
+    border-radius: 0.25rem;
+    border: none;
+    background: var(--blue-300);
+    font-family: Work Sans, sans-serif;
+
+    &:focus {
+      border: 2px solid var(--blue-500);
+      transition: all 0.1s ease;
+    }
+    &:hover {
+      border: 2px solid var(--blue-500);
+      transition: all 0.1s ease;
+    }
+  }
+}

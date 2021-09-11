@@ -1,0 +1,50 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0px;
+  left: 0px;
+  display: flex;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  // padding: 2rem calc(4rem + 15px) 2rem 2rem;
+}
+
+@media (max-width) {
+  .modal {
+    padding: 2rem calc(2rem + 15px) 2rem 2rem;
+  }
+}
+
+.modalBox {
+  height: 30rem;
+  width: 30rem;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  padding: 3rem;
+
+  button {
+    margin-top: 2rem;
+    height: 3.5rem;
+    width: 100%;
+    background: var(--linear);
+    color: var(--white);
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-family: Work Sans, sans-serif;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}

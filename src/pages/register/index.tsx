@@ -31,8 +31,6 @@ function Register() {
 
   useEffect(() => {
     fetchLocal();
-    console.log('Register *** ', myLocal);
-
     // eslint-disable-next-line
   }, []);
 

@@ -1,6 +1,6 @@
 import { validateEmail } from './validate';
 
-describe('Validate', () => {
+describe('Validate email', () => {
   it('Is validate email', () => {
     const isValidate = validateEmail('hjunor@gmail.com');
     expect(isValidate).toEqual(true);
