@@ -14,6 +14,41 @@
   flex-direction: column;
   justify-content: center;
 }
+.card {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tilt {
+  position: relative;
+
+  img {
+    width: 34rem;
+    height: 30rem;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+}
+
+.btn {
+  position: absolute;
+  height: 4rem;
+  color: var(--white);
+  border-radius: 0.5rem;
+  padding: 0 1rem 0 1rem;
+  background: var(--linear);
+  font-weight: bold;
+  font-size: 1.4rem;
+  font-family: Work Sans, sans-serif;
+  right: 7rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  top: 90%;
+}
 .contentText {
   font-size: 4.5rem;
   font-weight: 700;

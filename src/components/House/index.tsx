@@ -43,7 +43,7 @@ export default function House({ setLocal, data, isLogin }: any) {
           </button>
           <img
             className={styles.imgHouse}
-            src={data?.img[1].url || data.img}
+            src={data?.img[0].url || data.img}
             alt=""
           />
         </div>

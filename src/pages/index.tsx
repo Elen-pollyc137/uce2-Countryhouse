@@ -1,15 +1,14 @@
 import Head from 'next/head';
 import styles from './styles.module.scss';
-import database from '../../lib/database';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import TypeWriter from '../components/TypeWriter';
-import { useUser } from '../hooks/useUser';
-
+import Tilt from 'react-parallax-tilt';
 const typeWriter = [
-  ' sua melhor versão.',
+  ' casas aconchegantes.',
   ' belos caminhos.',
   ' lugares fantásticos.',
+  ' descanso e beleza',
 ];
 
 const Home: NextPage = () => {
@@ -23,10 +22,18 @@ const Home: NextPage = () => {
         <div className={styles.containerLeft}>
           <div className={styles.contentText}>
             Country<span className={styles.span}>&</span>House O lugar para
-            encotrar
+            encontrar
             <TypeWriter data={typeWriter} />
           </div>
           <img src="/Assets/frame.svg" alt="frame" className={styles.image} />
+        </div>
+        <div className={styles.card}>
+          <Tilt className={styles.tilt}>
+            <img src="/Assets/img.png" className="Tilt-inner" alt="frame" />
+            <Link href="/map">
+              <a className={styles.btn}>Locais disponíveis no mapa</a>
+            </Link>
+          </Tilt>
         </div>
       </section>
     </div>

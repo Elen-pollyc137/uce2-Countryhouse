@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       <div className={styles.containerLeft}>
         <div className={styles.contentText}>
           Country<span className={styles.span}>&</span>House O lugar para
-          encotrar sua melhor versão.
+          encontrar sua melhor versão.
         </div>
         <img src="/Assets/frame.svg" alt="frame" className={styles.image} />
       </div>

@@ -106,23 +106,26 @@ export default function Location({ pointer }: IPointerArray) {
         {local && <House setLocal={setLocal} data={data} />}
         {!local && (
           <div className={styles.painel}>
-            {pointer.map((item: IPointer) => (
-              <div
-                onClick={() => mapClickedLocal(item)}
-                key={item.name}
-                className={styles.card}
-              >
-                <img
-                  src={item.img[0].url}
-                  alt={item.name}
-                  className={styles.img}
-                />
-                <div className={styles.texts}>
-                  <h2>{item.name}</h2>
-                  <p>{item.description}</p>
+            {pointer
+              .reverse()
+              .slice(0, 3)
+              .map((item: IPointer) => (
+                <div
+                  onClick={() => mapClickedLocal(item)}
+                  key={item.name}
+                  className={styles.card}
+                >
+                  <img
+                    src={item.img[0].url}
+                    alt={item.name}
+                    className={styles.img}
+                  />
+                  <div className={styles.texts}>
+                    <h2>{item.name}</h2>
+                    <p>{item.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         )}
       </section>

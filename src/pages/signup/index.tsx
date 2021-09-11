@@ -15,9 +15,10 @@ type ICreateUser = {
 };
 
 const typeWriter = [
-  'sua melhor versão.',
-  'belos caminhos.',
-  'lugares fantásticos.',
+  ' casas aconchegantes.',
+  ' belos caminhos.',
+  ' lugares fantásticos.',
+  ' descanso e beleza',
 ];
 
 type IMatch = string | boolean;
@@ -51,7 +52,7 @@ export default function SignUp() {
         <div className={styles.containerLeft}>
           <div className={styles.contentText}>
             Country<span className={styles.span}>&</span>House O lugar para
-            encotrar <TypeWriter data={typeWriter} />
+            encontrar <TypeWriter data={typeWriter} />
           </div>
           <img src="/Assets/frame.svg" alt="frame" className={styles.image} />
         </div>
