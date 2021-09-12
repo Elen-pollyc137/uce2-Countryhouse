@@ -90,6 +90,7 @@ export default function Location({ pointer }: IPointerArray) {
                   available={local.available}
                 />
               ))}
+
             {pointer.map((local: IPointer) => (
               <LocalTour
                 onClick={() => mapClickedLocal(local)}
