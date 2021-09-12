@@ -72,7 +72,7 @@ export default function House({ setLocal, data, isLogin }: any) {
               </div>
               <div>
                 <VscTrash onClick={handleDelete} size={32} />
-                <MdEdit size={32} />
+                <MdEdit style={{ display: 'none' }} size={32} />
               </div>
             </div>
           )}
