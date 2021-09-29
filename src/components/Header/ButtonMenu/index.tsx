@@ -12,10 +12,7 @@ export function ButtonMenu({ children }: any) {
     userLogout();
   }
   return (
-    <div
-      style={{ display: 'flex', alignItems: 'center' }}
-      onClick={() => setActive(!active)}
-    >
+    <div className={styles.flex} onClick={() => setActive(!active)}>
       {children}
       <AiOutlineCaretDown size={16} />
       {active && (
