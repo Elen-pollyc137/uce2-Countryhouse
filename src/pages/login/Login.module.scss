@@ -141,7 +141,7 @@
     input {
       margin: 0.5rem 0 0.5rem 0;
       height: 3rem;
-      border-radius: 0.2rem;
+      border-radius: 0.6rem;
       padding: 0.5rem 0.5rem;
       border: none;
       background: var(--gray-100);
@@ -157,12 +157,14 @@
   position: relative;
   width: 100%;
   border-radius: 0.6rem;
-  background: var(--blue-300);
+  background: var(--blue-400);
 
   height: 3rem;
   input {
+    background: var(--blue-300);
+
     margin: 0;
-    width: 80%;
+    width: 100%;
   }
 }
 .eyes {

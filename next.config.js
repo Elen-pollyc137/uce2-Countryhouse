@@ -1,5 +1,11 @@
 module.exports = {
   reactStrictMode: true,
+  images: {
+    domains: [
+      'www.datocms-assets.com',
+      'nextjs-location-files.s3.amazonaws.com',
+    ],
+  },
   async headers() {
     return [
       {

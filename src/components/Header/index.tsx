@@ -5,6 +5,7 @@ import { useUser } from '../../hooks/useUser';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useRouter } from 'next/router';
 import { FiLogOut } from 'react-icons/fi';
+import { ButtonMenu } from './ButtonMenu';
 
 const Header: NextPage = () => {
   const { pathname } = useRouter();
@@ -35,26 +36,11 @@ const Header: NextPage = () => {
             <Link href="/perfil">
               <a className={styles.login}>Perfil</a>
             </Link>
-            <span className={`${styles.login} ${styles.hover}`}>
-              <span>Olá </span>
-              <strong>{user?.name}</strong>
-              <IoIosArrowDown size={16} />
-              <ul className={styles.menu}>
-                {/* <li>
-                  <FiLogOut size={32} />
-                  <button>Perfil</button>
-                </li> */}
-                <li>
-                  <FiLogOut size={32} />
-                  <button
-                    onClick={() => {
-                      userLogout();
-                    }}
-                  >
-                    sair
-                  </button>
-                </li>
-              </ul>
+            <span className={styles.login}>
+              <ButtonMenu>
+                <span>Olá </span>
+                <strong>{user?.name}</strong>
+              </ButtonMenu>
             </span>
           </div>
         ) : (

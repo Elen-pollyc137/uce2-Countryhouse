@@ -44,7 +44,7 @@ export default function House({ setLocal, data, isLogin }: any) {
           <img
             className={styles.imgHouse}
             src={data?.img[0].url || data.img}
-            alt=""
+            alt="image"
           />
         </div>
         <div className={styles.contentHouse}>
