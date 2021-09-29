@@ -68,7 +68,7 @@ const Home: NextPage = () => {
             <button
               disabled
               style={{ opacity: 0.5 }}
-              className={styles.button}
+              className={styles.load}
               type="submit"
             >
               <Loading />
