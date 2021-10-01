@@ -9,7 +9,7 @@ import { ButtonMenu } from './ButtonMenu';
 
 const Header: NextPage = () => {
   const { pathname } = useRouter();
-  const { login, user, userLogout } = useUser();
+  const { login, user } = useUser();
 
   return (
     <header
@@ -27,13 +27,13 @@ const Header: NextPage = () => {
         </Link>
         {login ? (
           <div className={styles.wrapperLink}>
-            <Link href="/map">
+            <Link href="/map" passHref>
               <a className={styles.login}>Mapa</a>
             </Link>
-            <Link href="/register">
+            <Link href="/register" passHref>
               <a className={styles.login}>Meus Locais</a>
             </Link>
-            <Link href="/perfil">
+            <Link href="/perfil" passHref>
               <a className={styles.login}>Perfil</a>
             </Link>
             <span className={styles.login}>
@@ -46,10 +46,10 @@ const Header: NextPage = () => {
         ) : (
           <>
             <div className={styles.wrapperLink}>
-              <Link href="/map">
+              <Link href="/map" passHref>
                 <a className={styles.login}>Mapa</a>
               </Link>
-              <Link href="/login">
+              <Link href="/login" passHref>
                 <a className={styles.login}>Login</a>
               </Link>
             </div>

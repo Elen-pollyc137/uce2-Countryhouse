@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <div className={styles.card}>
           <Tilt className={styles.tilt}>
             <img src="/Assets/img.png" className="Tilt-inner" alt="frame" />
-            <Link href="/map">
+            <Link href="/map" passHref>
               <a className={styles.btn}>Locais disponíveis no mapa</a>
             </Link>
           </Tilt>

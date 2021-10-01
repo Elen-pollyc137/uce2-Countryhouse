@@ -14,7 +14,7 @@ type ILogin = {
   password: string;
 };
 const Home: NextPage = () => {
-  const { userLogin, loading, error } = useUser();
+  const { userLogin, loading } = useUser();
   const [visible, setVisible] = useState<any>(true);
 
   const { register, handleSubmit } = useForm();
@@ -87,10 +87,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-export async function getServerSideProps() {
-  await database().then(() => {
-    console.log('ok');
-  });
-
-  return { props: { pets: true } };
-}
